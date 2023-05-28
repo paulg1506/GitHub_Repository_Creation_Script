@@ -10,23 +10,24 @@ REM Strips the CWD down into the final folder name this will be name for Repo
 REM Does not handle spaces in directory names - and _ work fine
 FOR %%I IN (%CWD%) do (SET REPO=%%~nxI)
 
-REM Asks user if Repo should be public defaults to no
-SET /P "PUB=Do you want the Repository to be Public? <y/N>: " || SET "PUB=N"
+REM Asks user if Repo should be private defaults to yes
+SET /P "PRIV=Do you want the Repository to be Private? <Y/n>: " || SET "PRIV=Y"
 
-REM Sets PUB to true or false based on user input
-IF "%PUB%"=="N" SET "PUB=false"
-IF "%PUB%"=="n" SET "PUB=false"
-IF "%PUB%"=="Y" SET "PUB=true"
-IF "%PUB%"=="y" SET "PUB=true"
+REM Sets PRIV to true or false based on user input
+IF "%PRIV%"=="N" SET "PRIV=false"
+IF "%PRIV%"=="n" SET "PRIV=false"
+IF "%PRIV%"=="Y" SET "PRIV=true"
+IF "%PRIV%"=="y" SET "PRIV=true"
 
 REM Asks user to enter description for the Repo defaults to No Description Entered if empty
 SET /P "DESC=Enter a description for this repository: " || SET "DESC=No Description Entered."
 
+CLS
 REM Echoes Collected Details
 ECHO "To Confirm: "
 ECHO "A repository wil be created named: %REPO%"
 ECHO "The description will read: %DESC%"
-ECHO "The repository will be Public: %PUB%"
+ECHO "The repository will be Private: %PRIV%"
 
 REM Prompts user to check if this is correct defaults to no
 SET /P "CHECK=Is this correct? <y/N>: " || SET "CHECK=N"
@@ -41,7 +42,7 @@ IF "%CHECK%"=="n" CALL :no_create
 REM The collected information is crafted into a json payload.
 REM Function creates Repo by performing a curl POST request to github API.
 :repo_create
-SET "PAYLOAD="{\"name\": \"%REPO%\", \"description\": \"%DESC%\", \"private\": \"%PUB%\"}""
+SET "PAYLOAD="{\"name\": \"%REPO%\", \"description\": \"%DESC%\", \"private\": \"%PRIV%\"}""
 curl -i -H "Authorization: token [INSERT TOKEN HERE]" -d %PAYLOAD% https://api.github.com/user/repos
 SET /P "Z=Press [Enter] to exit."
 EXIT
