@@ -7,6 +7,6 @@
  Can be expanded by including more parameters in the PAYLOAD variable more information is available at: 
  https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user
 
- Requires an API token generated on GitHub.
-
  Currently does not accept spaces in directory names. 
+
+*Public/Private not working maybe due to true/false being in quotes 
