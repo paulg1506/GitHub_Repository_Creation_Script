@@ -1,6 +1,6 @@
 ## GitHub Repository Creation Script ##
 
- A simple batch script to create a new repository on Github from the command line. 
+ A simple batch script to create a new remote repository on Github from the command line. 
  Creates a repository with the name of the current working directory on GitHub.
  Allows the repository to be set as public or private and a description can be added. 
  
