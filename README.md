@@ -8,5 +8,3 @@
  https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user
 
  Currently does not accept spaces in directory names. 
-
-*Public/Private not working maybe due to true/false being in quotes 

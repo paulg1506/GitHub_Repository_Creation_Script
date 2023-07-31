@@ -42,7 +42,7 @@ IF "%CHECK%"=="n" CALL :no_create
 REM The collected information is crafted into a json payload.
 REM Function creates Repo by performing a curl POST request to github API.
 :repo_create
-SET "PAYLOAD="{\"name\": \"%REPO%\", \"description\": \"%DESC%\", \"private\": \"%PRIV%\"}""
+SET "PAYLOAD="{\"name\": \"%REPO%\", \"description\": \"%DESC%\", \"private\": %PRIV%}""
 curl -i -H "Authorization: token [INSERT TOKEN HERE]" -d %PAYLOAD% https://api.github.com/user/repos
 SET /P "Z=Press [Enter] to exit."
 EXIT
